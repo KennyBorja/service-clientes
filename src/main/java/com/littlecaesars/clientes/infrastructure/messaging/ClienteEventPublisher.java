@@ -9,10 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-/**
- * Publicador de eventos al broker RabbitMQ.
- * Infrastructure Layer — publica eventos de dominio al exterior.
- */
 @Component
 public class ClienteEventPublisher {
 
@@ -30,12 +26,6 @@ public class ClienteEventPublisher {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    /**
-     * Publica el evento "cliente.registrado" al broker de mensajes.
-     * Otros servicios (Caja, Bonita) pueden suscribirse a este evento.
-     *
-     * @param cliente el cliente recién registrado
-     */
     public void publicarClienteRegistrado(Cliente cliente) {
         ClienteRegistradoEvent evento = new ClienteRegistradoEvent(
                 cliente.getId().toString(),
@@ -45,12 +35,11 @@ public class ClienteEventPublisher {
                 cliente.getEmail(),
                 LocalDateTime.now()
         );
-
         try {
             rabbitTemplate.convertAndSend(exchange, routingKeyRegistrado, evento);
             log.info("Evento cliente.registrado publicado para clienteId: {}", cliente.getId());
         } catch (Exception e) {
-            // El fallo en mensajería no debe interrumpir el registro del cliente
+            // El fallo en mensajería no interrumpe el registro del cliente
             log.error("Error al publicar evento RabbitMQ para clienteId: {}. Detalle: {}",
                     cliente.getId(), e.getMessage());
         }

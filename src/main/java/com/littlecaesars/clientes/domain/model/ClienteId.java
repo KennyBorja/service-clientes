@@ -2,10 +2,6 @@ package com.littlecaesars.clientes.domain.model;
 
 import java.util.UUID;
 
-/**
- * Value Object que representa el identificador único de un Cliente.
- * Inmutable por diseño — DDD Value Object.
- */
 public record ClienteId(UUID value) {
 
     public ClienteId {
@@ -14,12 +10,10 @@ public record ClienteId(UUID value) {
         }
     }
 
-    /** Genera un nuevo ClienteId aleatorio */
     public static ClienteId nuevo() {
         return new ClienteId(UUID.randomUUID());
     }
 
-    /** Reconstruye un ClienteId desde un String UUID */
     public static ClienteId desde(String uuid) {
         return new ClienteId(UUID.fromString(uuid));
     }

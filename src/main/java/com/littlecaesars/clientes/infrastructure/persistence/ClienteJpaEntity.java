@@ -5,11 +5,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-/**
- * Entidad JPA para persistencia de Clientes.
- * Infrastructure Layer — mapeo a la tabla de base de datos.
- * Separada del Aggregate Root para mantener el dominio libre de anotaciones JPA.
- */
 @Entity
 @Table(name = "clientes")
 public class ClienteJpaEntity {
@@ -37,7 +32,6 @@ public class ClienteJpaEntity {
     @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
 
-    // ─── Constructor vacío requerido por JPA ─────────────────────────────────
     protected ClienteJpaEntity() {}
 
     public ClienteJpaEntity(String id, String nombre, String apellido,
@@ -52,19 +46,17 @@ public class ClienteJpaEntity {
         this.fechaRegistro = fechaRegistro;
     }
 
-    // ─── Getters ──────────────────────────────────────────────────────────────
-    public String getId()                { return id; }
-    public String getNombre()            { return nombre; }
-    public String getApellido()          { return apellido; }
-    public String getTelefono()          { return telefono; }
-    public String getEmail()             { return email; }
-    public ClienteEstado getEstado()     { return estado; }
+    public String getId()                   { return id; }
+    public String getNombre()               { return nombre; }
+    public String getApellido()             { return apellido; }
+    public String getTelefono()             { return telefono; }
+    public String getEmail()                { return email; }
+    public ClienteEstado getEstado()        { return estado; }
     public LocalDateTime getFechaRegistro() { return fechaRegistro; }
 
-    // ─── Setters (necesarios para actualizaciones JPA) ───────────────────────
-    public void setNombre(String nombre)       { this.nombre = nombre; }
-    public void setApellido(String apellido)   { this.apellido = apellido; }
-    public void setTelefono(String telefono)   { this.telefono = telefono; }
-    public void setEmail(String email)         { this.email = email; }
-    public void setEstado(ClienteEstado estado){ this.estado = estado; }
+    public void setNombre(String nombre)        { this.nombre = nombre; }
+    public void setApellido(String apellido)    { this.apellido = apellido; }
+    public void setTelefono(String telefono)    { this.telefono = telefono; }
+    public void setEmail(String email)          { this.email = email; }
+    public void setEstado(ClienteEstado estado) { this.estado = estado; }
 }
