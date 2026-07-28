@@ -9,7 +9,7 @@ Implementado con **Java 21 + Spring Boot 3 + Maven**.
 
 | Integrante | Servicio |
 |-----------|---------|
-| [Tu nombre] | service-clientes |
+| [borja valencia kenny] | service-clientes |
 
 **Organización**: Little Caesars (ficticia)  
 **Repositorio principal**: [Little-Caersars-BPM-Project](https://github.com/AlonsoUNSA/Little-Caersars-BPM-Project)
